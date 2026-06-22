@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VeroStudio — a browser-based perfboard circuit designer. Place components, draw wires, and design your prototype layout.">
+  <title>VeroStudio - Perfboard Circuit Designer</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div id="app-container">
+    
+    <!-- Top Toolbar -->
+    <header id="toolbar">
+      <div class="toolbar-group">
+        <span class="toolbar-title">VeroStudio</span>
+        <button id="btn-new" class="btn" title="New Project">New</button>
+        <button id="btn-open" class="btn" title="Open .vero / .json file">📂 Open</button>
+        <button id="btn-save" class="btn btn-primary" title="Save Project as .vero JSON">💾 Save</button>
+        <button id="btn-import-json" class="btn" title="Import project from JSON file">📥 Import JSON</button>
+        <button id="btn-export-json" class="btn" title="Export project as JSON file">📤 Export JSON</button>
+        <div class="divider"></div>
+        <button id="btn-undo" class="btn btn-disabled" title="Undo (Ctrl+Z)">↩ Undo</button>
+        <button id="btn-redo" class="btn btn-disabled" title="Redo (Ctrl+Y / Ctrl+Shift+Z)">↪ Redo</button>
+      </div>
+      
+      <div class="toolbar-group">
+        <button id="btn-theme-toggle" class="btn" title="Toggle Light/Dark Theme">🌓 Theme</button>
+        <button id="btn-export-png" class="btn" title="Export board as high-res PNG image">📷 Export PNG</button>
+      </div>
+    </header>
+
+    <!-- Left Toolbox Sidebar -->
+    <aside id="left-panel">
+      <div class="panel-header">
+        <span>Toolbox</span>
+      </div>
+      <div class="panel-content">
+        <!-- Populated by src/ui/toolbox.js at runtime -->
+      </div>
+    </aside>
+
+    <!-- Canvas Workspace -->
+    <main id="canvas-container">
+      <canvas id="main-canvas"></canvas>
+    </main>
+
+    <!-- Right Properties Panel -->
+    <aside id="right-panel">
+      <div class="panel-header">
+        <span>Properties</span>
+      </div>
+      <div class="panel-content">
+        <!-- Populated by src/ui/properties-panel.js at runtime -->
+      </div>
+    </aside>
+
+    <!-- Bottom Status Bar -->
+    <footer id="status-bar">
+      <div id="status-mode">Mode: Select</div>
+      <div id="status-coords">Grid: 0, 0</div>
+      <div id="status-zoom">Zoom: 100%</div>
+    </footer>
+
+  </div>
+
+  <!-- PNG Export Resolution Modal -->
+  <div id="export-png-modal" class="modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="export-modal-title">
+    <div class="modal-box">
+      <h2 id="export-modal-title">📷 Export PNG</h2>
+      <p class="modal-desc">Choose the resolution scale for your exported image.</p>
+      <div class="modal-options">
+        <label class="modal-option" id="export-scale-1x">
+          <input type="radio" name="export-scale" value="1" checked>
+          <span class="option-label">1× — Standard</span>
+          <span class="option-desc">Screen resolution (fast)</span>
+        </label>
+        <label class="modal-option" id="export-scale-2x">
+          <input type="radio" name="export-scale" value="2">
+          <span class="option-label">2× — High-DPI</span>
+          <span class="option-desc">Double resolution (recommended)</span>
+        </label>
+        <label class="modal-option" id="export-scale-4x">
+          <input type="radio" name="export-scale" value="4">
+          <span class="option-label">4× — Ultra HD</span>
+          <span class="option-desc">4× resolution (large file)</span>
+        </label>
+      </div>
+      <label class="modal-bg-row">
+        <input type="checkbox" id="export-transparent-bg"> Transparent background
+      </label>
+      <div class="modal-actions">
+        <button id="export-png-cancel" class="btn">Cancel</button>
+        <button id="export-png-confirm" class="btn btn-primary">⬇ Download</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
