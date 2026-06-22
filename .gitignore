@@ -24,3 +24,10 @@ node_modules/
 # Agent/AI Configs
 .agents/
 .gemini/
+
+# Testing
+test/
+
+# Documentation (Exclude all markdown files except README.md)
+*.md
+!README.md
